@@ -300,6 +300,7 @@
     <module>tcases-lib</module>
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
+    <module>beanfiller-tcases</module>
   </modules>
 
 </project>

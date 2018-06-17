@@ -1,46 +1,154 @@
-# Tcases: A Model-Based Test Case Generator #
+# Beanfiller-Tcases
 
-## What's New? ##
+An annotation and reflections based java-library to fill Java beans with values according to combinatorial testing principles.
+This is useful for acceptance-testing, integration-testing, and unit-testing of functions with high complexity.
 
-  * The latest version (Tcases 2.0.0) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
+## Short introduction
 
-  * Tcases 2.0.0 is a major release designed to open Tcases up to a much broader community of applications. The [features included](ReleaseNotes.md)
-    will be especially helpful for applications that use the Tcases API to embed Tcases capabilities into larger programs.
-    Some changes are not compatible with previous releases.
+```java
+public class EmojiTestInput {
 
-  * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
+    @Var(value = {@Value("^"), @Value("°"), @Value("ಠ"), @Value("≖"), @Value("•"),
+           @Value("ˇ"), @Value("˘"), @Value("ᴗ"), @Value("\""), @Value("<"), @Value("╥")})
+    char eye;
 
-## What Does It Do? ##
+    @Var(value = {@Value("-"), @Value("_"), @Value("‿"), @Value("∇"), @Value("◡"),
+           @Value("³"), @Value("ᴗ"), @Value("﹏"), @Value(".")})
+    char snoot;
 
-Tcases is a tool for designing tests. It doesn't matter what kind of system you are testing. Nor does it matter what level of the system you are testing -- unit, subsystem, or full system. You can use Tcases to design your tests in any of these situations. With Tcases, you define the input space for your system-under-test and the level of coverage that you want. Then Tcases generates a minimal set of test cases that meets your requirements.
+    @Var(value = {@Value("\\/"), @Value("ᕙᕗ"), @Value("ᕦᕤ"), @Value("┌ʃ")})
+    String arms;
 
-Tcases is primarily a tool for black-box test design. For such tests, the concept of "coverage" is different from structural testing critieria such as line coverage, branch converage, etc. Instead, Tcases is guided by coverage of the input space of your system.
+    private String getFace() {
+        return (arms == null ? "" : arms.substring(0, 1))
+                + '(' + eye + snoot + eye + ')'
+                + (arms == null ? "" : arms.substring(1, 2));
+    }
 
-Tcases gives you a way to define the input space for your system in a form that is concise but comprehensive. Then Tcases allows you to control the number of test cases in your sample subset by specifying the level of coverage you want. You can start with a basic level of coverage, and Tcases will generate a small set of test cases that touches every significant element of the input space. Then you can improve your tests by selectively adding coverage in specific high-risk areas. For example, you can specify pairwise coverage or higher-order combinations of selected input variables.
+    public static void main(String[] args) {
+        int tupleSize = 2;
+        List<EmojiTestInput> testCases = new FunctionTestsCreator<>(EmojiTestInput.class)
+                        .tupleGenerator(tupleSize)
+                        .createDefs();
 
-## How Does It Work? ##
+        testCases.forEach(test -> System.out.println(test.getFace()));
 
-First, you create a system input definition, an XML document that defines your system as a set of functions. For each system function, the system input definition defines the variables that characterize the function input space.
+        System.out.println("\n" + testCases.size() + " faces generated with independent "
+                           + tupleSize + "-tuples or properties");
+    }
+}
+```
 
-Then, you can create a generator definition. That's another XML document that defines the coverage you want for each system function. The generator definition is optional. You can skip this step and still get a basic level of coverage.
+Running this class yields:
 
-Finally, you run Tcases. Tcases is a Java program that you can run from the command line or using the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/). The command line version of Tcases comes with built-in support for running using a shell script or an ant target. Using your input definition and your generator definition, Tcases generates a system test definition. The system test definition is an XML document that lists, for each system function, a set of test cases that provides the specified level of coverage. Each test case defines a specific value for every function input variable. Tcases generates not only valid input values that define successful test cases but also invalid values for the tests cases that are needed to verify expected error handling.
+```
+\(^-^)/  ᕙ(^-^)ᕗ  ᕦ(^-^)ᕤ  ┌(^-^)ʃ  (^-^)  (^_^)  ᕦ(^◡^)ᕤ  ┌(^◡^)ʃ  ┌(°﹏°)ʃ  (°﹏°)  \(°.°)/   \(ಠ-ಠ)/  ᕙ(ಠ-ಠ)ᕗ  ᕦ(ಠ-ಠ)ᕤ  ┌(ಠ-ಠ)ʃ  (ಠ-ಠ) ...
+119 faces generated with independent 2-tuples or properties
+```
 
-Of course, the system test definition is not something you can execute directly. But it follows a well-defined XML schema, which means you can use a variety of XML transformation tools to convert it into a form that is suitable for testing your system. For example, Tcases comes with a built-in transformer that converts a system test definition into a Java source code template for a JUnit or TestNG test class.
+Of the total possible combinations (11 x 9 x 5 = 495), this is a smaller subset of 119 faces where for each trait-pair (e.g. eyes and mouth) each combination appears at least once.
+As test-inputs, using such subsets instead of all combinations reduces test-time while usually detecting the same bugs as the full set.
 
-## Get Started! ##
+## Motivation
 
-  * [Tcases: The Complete Guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm)
-  * [The Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/)
-  * [How To Download Using Maven](HowToDownload.md)
-  * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
-  * [Release Notes](ReleaseNotes.md)
-  * Javadoc: [Tcases Core API](http://www.cornutum.org/tcases/docs/api/core/)
+When automating tests for system with complex inputs, a challenge is maintaining a large set of test input combinations, another challenge is to keep the duration of running all tests low.
+Using Beanfiller-tcases, java developers can model any number of testcases in a simple java bean and have instances automaticall generated to run tests, with the benefit of pairwise testing reducing the total number of tests.
 
-## Contributors ##
+This project uses [Tcases](https://github.com/Cornutum/tcases), a tool for combinatorial testing.
+Tcases is intended as a standalone CLI tool to maintain a set of testcase xml-files over time, possibly maintaining also a set of generated+modified Test sources (in any language) containing expected values for each generated testcase (a.k.a Oracle).
 
-Thanks to the following people, who have contributed significant improvements to Tcases.
+In contract to Tcases, Beanfiller-Tcases aims to be used as a java library without necessarily handling XML or generated testing code.
+A tester can easily generate a small subset of combinations of test variables, and thus have an easily readable and maintainable testing codebase.
 
-  * [Kerry Kimbrough](https://github.com/kerrykimbrough) (project founder)
-  * [Juglar](https://github.com/juglar)
-  * [Thibault Kruse](https://github.com/tkruse)
+## How to use
+
+### In Maven
+
+```
+    <dependency>
+      <groupId>org.beanfiller</groupId>
+      <artifactId>tcases-annotation</artifactId>
+      <version>[latestVersion]</version>
+    </dependency>
+```
+
+### In Gradle
+
+```
+dependencies {
+    testCompile 'org.beanfiller:tcases-annotation:[latestVersion]'
+}
+```
+
+The library can be used freely in any other Unit testing framework like JUnit or TestNg.
+It comes with only a few common dependencies:
+
+```
++--- org.cornutum.tcases:tcases-lib
+     +--- org.apache.commons:commons-lang3
+     +--- org.apache.commons:commons-collections4
+     \--- org.slf4j:slf4j-api
+```
+
+There are example projects in the samples subfolder to look at.
+
+## Test design
+
+As a general approach for using this library, it is recommended to split the test code in 3 parts:
+
+1. The testcase **input definition**
+2. The actual **test input/output** values derived from the **input definition**
+3. A parametrized tests running all tests cases with given **test input** and validate given **test output**
+
+In simple cases the input definition can also serve as test input (Like in the example at the top), but when adding constraints this approach quickly becomes unmanageable.
+
+
+## Q & A
+
+### When should I use this?
+
+The main benefit is for situations where you need to test many combinations of input values and tests are too slow to just run all possible combinations.
+It might however also be beneficial when you need to run all combinations, and need a good way to define those combinations with nested structures.
+
+### What datatypes can be used?
+
+By default the library will work with Java primitives, Numbers, Booleans, Strings and Enums.
+Custom Mappers can extend this to other types.
+
+### Why not annotate methods instead of Beans?
+
+Most commonly testcases will contain meta-information in addition to raw values, a bean is required to capture this data.
+
+### How can test outputs be derived without calling the system under test?
+
+Most generally they cannot, and you have to provide them by hand.
+But in many cases, since the testcase knows moe than the input values, output values can be generated.
+In particular, the test case has knowledge about:
+
+1. The intended semantics of a value
+2. The indented semantics of a testcase
+3. Additional annotations added to the testcase model
+4. The construction of actual test values
+
+This knowledge can enable a test to correctly define an expected output without running the system under test.
+
+### Doesn't this approach violate the KISS (Keep it simple stupid) guideline for testing?
+
+Yes and no: the principle suggests to use the simplest out of all alternatives.
+Maintaining 1000s of testcase methods that have been first generated and then manually extended can be much more complex than an approach without code generation.
+However when your testcode becomes complex, it may be wise to write tests for your testcode itself.
+
+## Resources
+
+On pairwise testing:
+
+* The Tcases guide: http://www.cornutum.org/tcases/docs/Tcases-Guide.htm
+* Overview of pairwise-testing https://en.wikipedia.org/wiki/All-pairs_testing
+* Overview of combinatorial testing tools: http://www.pairwise.org/tools.asp
+* Overview of Boundary Value testing https://en.wikipedia.org/wiki/Boundary_testing
+
+On very different approaches that also generate values for testing:
+
+* Overview of Property-based testing https://en.wikipedia.org/wiki/QuickCheck
+* EvoSuite http://www.evosuite.org/
+* Mockaroo https://mockaroo.com/
