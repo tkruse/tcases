@@ -281,7 +281,8 @@
   </dependencyManagement>
 
   <modules>
-    <module>tcases-annotation</module>
+    <module>beanfiller-tcases</module>
+    <module>samples</module>
     <module>samples/find-sample</module>
     <module>samples/testng-sample</module>
   </modules>
