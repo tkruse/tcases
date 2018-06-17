@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        // these are globally visible, but plugins still need apply plugin ... to be enabled
+        classpath "gradle.plugin.com.github.spotbugs:gradlePlugin:${ToolVersions.spotbugsPlugin}"
+        classpath "com.palantir:jacoco-coverage:${ToolVersions.jacocoPlugin}"
+    }
+}
+
+plugins {
+    id "idea"
+    id "eclipse"
+    id "com.github.ben-manes.versions" version '0.20.0'
+}
+
+allprojects {
+
+    group = 'org.sonatype.oss'
+    version = project.version // taken from gradle.properties
+
+    repositories {
+        jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+}
+
+subprojects {
+    // task to show all project dependencies
+    task allDeps(type: DependencyReportTask) {}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
+}

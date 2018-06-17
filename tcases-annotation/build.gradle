@@ -1,0 +1,15 @@
+JavaSetup.configure(project)
+
+dependencies {
+    compileOnly Libraries.jsr305
+    // TODO: Allow using beanfiller without referencing tcases
+    compile Libraries.tcases
+    // For StringUtils
+    compile Libraries.commons_lang3
+    // For IteratorUtils
+    compile Libraries.commons_coll4
+    compile Libraries.slf4j_api
+
+    testCompileOnly Libraries.jsr305
+    testCompile LibraryGroups.unit_test
+}
