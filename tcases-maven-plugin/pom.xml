@@ -104,6 +104,14 @@
           <groupId>org.codehaus.plexus</groupId>
           <artifactId>plexus-utils</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>classworlds</groupId>
+          <artifactId>classworlds</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-container-default</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -123,7 +131,7 @@
       <artifactId>maven-compat</artifactId>
       <version>3.1.1</version>
       <scope>test</scope>
-      <exclusions> <!-- OK -->
+      <exclusions>
         <exclusion>
           <groupId>org.eclipse.sisu</groupId>
           <artifactId>org.eclipse.sisu.plexus</artifactId>
