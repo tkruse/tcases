@@ -153,6 +153,79 @@
         </execution>
       </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <dependencyConvergence/>
+                <reactorModuleConvergence/>
+                <bannedDependencies>
+                </bannedDependencies>
+                <requireReleaseDeps>
+                  <onlyWhenRelease>true</onlyWhenRelease>
+                </requireReleaseDeps>
+                <requireUpperBoundDeps/>
+                <requireMavenVersion>
+                  <version>3.3.0</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>1.8</version>
+                </requireJavaVersion>
+                <requireSameVersions>
+                </requireSameVersions>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.basepom.maven</groupId>
+        <artifactId>duplicate-finder-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <id>default</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <printEqualFiles>false</printEqualFiles>
+          <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
+          <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
+          <failBuildInCaseOfConflict>false</failBuildInCaseOfConflict>
+          <checkCompileClasspath>true</checkCompileClasspath>
+          <checkRuntimeClasspath>true</checkRuntimeClasspath>
+          <checkTestClasspath>true</checkTestClasspath>
+          <skip>false</skip>
+          <quiet>false</quiet>
+          <preferLocal>true</preferLocal>
+          <useResultFile>true</useResultFile>
+          <resultFileMinClasspathCount>2</resultFileMinClasspathCount>
+          <resultFile>${project.build.directory}/duplicate-finder-result.xml</resultFile>
+
+          <includeBootClasspath>false</includeBootClasspath>
+          <bootClasspathProperty>sun.boot.class.path</bootClasspathProperty>
+          <includePomProjects>true</includePomProjects>
+          <useDefaultResourceIgnoreList>true</useDefaultResourceIgnoreList>
+          <ignoredResourcePatterns>
+            <ignoredResourcePattern>about\.html</ignoredResourcePattern>
+          </ignoredResourcePatterns>
+          <ignoredDependencies>
+          </ignoredDependencies>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 

@@ -105,10 +105,12 @@
           <artifactId>plexus-utils</artifactId>
         </exclusion>
         <exclusion>
+          <!-- using plexus classworlds -->
           <groupId>classworlds</groupId>
           <artifactId>classworlds</artifactId>
         </exclusion>
         <exclusion>
+          <!-- using sisu plexus -->
           <groupId>org.codehaus.plexus</groupId>
           <artifactId>plexus-container-default</artifactId>
         </exclusion>
