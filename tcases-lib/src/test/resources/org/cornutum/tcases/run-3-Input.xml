@@ -1,9 +1,0 @@
-<System name="System">
-  <Function name="Function">
-    <Input>
-      <Var name="Var">
-        <Value name="Value-0"/>
-      </Var>
-    </Input>
-  </Function>
-</System>
