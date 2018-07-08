@@ -282,6 +282,7 @@
 
   <modules>
     <module>tcases-annotation</module>
+    <module>samples/family-sample</module>
     <module>samples/find-sample</module>
     <module>samples/testng-sample</module>
   </modules>
