@@ -4,35 +4,41 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.cornutum.tcases</groupId>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
+  <groupId>org.beanfiller</groupId>
   <artifactId>tcases</artifactId>
   <packaging>pom</packaging>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
 
-  <name>Tcases</name>
-  <description>Generates test cases from system input space models</description>
-  <url>https://github.com/Cornutum/tcases</url>
+  <name>Beanfiller tcases</name>
+  <description>Generates Java beans based on annotations and combinatioral testing principles</description>
+  <url>https://github.com/beanfiller/beanfiller-tcases</url>
 
   <developers>
     <developer>
-      <name>Kerry Kimbrough</name>
-      <email>tcases@cornutum.org</email>
-      <organization>The Cornutum Project</organization>
-      <organizationUrl>http://www.cornutum.org</organizationUrl>
+      <name>Thibault Kruse</name>
+      <email>tcases@beanfiller.org</email>
+      <organization>The Beanfiller Project</organization>
+      <organizationUrl>http://www.beanfillers.org</organizationUrl>
     </developer>
   </developers>
 
   <licenses>
     <license>
-      <name>The MIT License</name>
-      <url>http://opensource.org/licenses/MIT</url>
+      <name>The Apache License</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
 
   <organization>
-    <name>The Cornutum Project</name>
-    <url>http://www.cornutum.org/</url>
+    <name>The Beanfiller Project</name>
+    <url>http://www.beanfillers.org/</url>
   </organization>
 
   <scm>
@@ -43,31 +49,12 @@
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/Cornutum/tcases/issues</url>
+    <url>https://github.com/beanfiller/beanfiller-tcases/issues</url>
   </issueManagement>
-
-  <mailingLists>
-    <mailingList>
-      <name>Tcases Forum</name>
-      <subscribe>https://groups.google.com/d/forum/tcases</subscribe>
-      <unsubscribe>https://groups.google.com/d/forum/tcases</unsubscribe>
-      <post>https://groups.google.com/d/forum/tcases</post>
-    </mailingList>  
-  </mailingLists>
-
-  <distributionManagement>
-      <snapshotRepository>
-          <id>ossrh</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      </snapshotRepository>
-      <repository>
-          <id>ossrh</id>
-          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-      </repository>
-  </distributionManagement>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.version>1.8</jdk.version>
   </properties>
 
   <build>
@@ -78,9 +65,11 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.7.0</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
             <encoding>UTF-8</encoding>
+            <source>${jdk.version}</source>
+            <target>${jdk.version}</target>
+            <showDeprecation>true</showDeprecation>
+            <showWarnings>true</showWarnings>
             <compilerArgument>-Xlint:all</compilerArgument>
             <compilerArgument>-Xlint:-processing</compilerArgument>
           </configuration>
@@ -102,15 +91,14 @@
           </executions>
         </plugin>
         <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.8</version>
-            <extensions>true</extensions>
-            <configuration>
-                <serverId>ossrh</serverId>
-                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5</version>
+          <configuration>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <useReleaseProfile>false</useReleaseProfile>
+            <arguments>${arguments} -Psonatype-oss-release</arguments>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -237,7 +225,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
+            <version>1.5</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -245,6 +233,9 @@
                 <goals>
                   <goal>sign</goal>
                 </goals>
+                <configuration>
+                  <useAgent>false</useAgent>
+                </configuration>
               </execution>
             </executions>
           </plugin>          
@@ -261,6 +252,7 @@
         <version>4.12</version>
         <scope>test</scope>
       </dependency>
+
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
@@ -283,23 +275,15 @@
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>1.1.1</version>
-        <scope>runtime</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.6</version>
       </dependency>
 
     </dependencies>
   </dependencyManagement>
 
   <modules>
-    <module>tcases-ant</module>
-    <module>tcases-lib</module>
-    <module>tcases-shell</module>
-    <module>tcases-maven-plugin</module>
+    <module>tcases-annotation</module>
+    <module>samples/find-sample</module>
+    <module>samples/testng-sample</module>
   </modules>
 
 </project>
