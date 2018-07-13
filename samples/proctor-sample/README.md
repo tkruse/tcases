@@ -1,0 +1,52 @@
+# Proctor sample
+
+Modeling some request variable and proctor variable combinations.
+
+Test output:
+
+```
+2018-07-13 11:26:44 [main] INFO  o.c.tcases.generator.TupleGenerator - FunctionInputDef[ProctorInputs]: Created 40 valid test cases
+2018-07-13 11:26:44 [main] INFO  o.c.tcases.generator.TupleGenerator - FunctionInputDef[ProctorInputs]: Extended 0 base failure test cases
+2018-07-13 11:26:44 [main] INFO  o.c.tcases.generator.TupleGenerator - FunctionInputDef[ProctorInputs]: Created 0 failure test cases
+2018-07-13 11:26:44 [main] INFO  o.c.tcases.generator.TupleGenerator - FunctionInputDef[ProctorInputs]: Completed 40 test cases
+ProctorInputs{language='en', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='en', country='FR', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='en', country='JP', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='en', country='null', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=null, acme_footer_links_tst=null, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='fr', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='fr', country='FR', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='JP', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='null', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=null, acme_footer_links_tst=null, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='US', mobile=true, native_mobile=false, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='ch', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='FR', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='ch', country='JP', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='null', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=null, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='US', mobile=true, native_mobile=false, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=null, acme_footer_links_tst=null, userVisitsCompanySearch=true, userVisitsCompanyReviews=false}
+ProctorInputs{language='null', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='null', country='FR', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='null', country='JP', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='null', country='null', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=true}
+ProctorInputs{language='null', country='FR', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=null, acme_footer_links_tst=null, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='en', country='US', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=null, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='en', country='FR', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='en', country='FR', mobile=true, native_mobile=false, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='en', country='FR', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=true, userVisitsCompanyReviews=false}
+ProctorInputs{language='en', country='JP', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='en', country='JP', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=null, userVisitsCompanySearch=false, userVisitsCompanyReviews=true}
+ProctorInputs{language='fr', country='JP', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=null, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='en', country='null', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='null', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='null', mobile=true, native_mobile=false, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=true}
+ProctorInputs{language='fr', country='FR', mobile=true, native_mobile=false, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=null, acme_footer_links_tst=null, userVisitsCompanySearch=true, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='US', mobile=true, native_mobile=false, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='fr', country='US', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=ACTIVE, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=false}
+ProctorInputs{language='fr', country='US', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=INACTIVE, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='FR', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=CONTROL, acme_footer_links_tst=null, userVisitsCompanySearch=false, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='JP', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=CONTROL, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=INACTIVE, userVisitsCompanySearch=true, userVisitsCompanyReviews=false}
+ProctorInputs{language='ch', country='null', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=ACTIVE, acme_footer_links_tst=null, userVisitsCompanySearch=true, userVisitsCompanyReviews=true}
+ProctorInputs{language='ch', country='null', mobile=true, native_mobile=true, acme_cmp_search_noindex_tst=null, acme_discovery_privileged_tst=null, acme_footer_links_tst=CONTROL, userVisitsCompanySearch=false, userVisitsCompanyReviews=false}
+ProctorInputs{language='ch', country='JP', mobile=false, native_mobile=false, acme_cmp_search_noindex_tst=INACTIVE, acme_discovery_privileged_tst=null, acme_footer_links_tst=ACTIVE, userVisitsCompanySearch=false, userVisitsCompanyReviews=true}
+```

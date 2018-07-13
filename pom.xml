@@ -285,6 +285,7 @@
     <module>samples</module>
     <module>samples/find-sample</module>
     <module>samples/testng-sample</module>
+    <module>samples/proctor-sample</module>
   </modules>
 
 </project>
